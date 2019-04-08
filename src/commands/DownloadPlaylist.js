@@ -28,11 +28,11 @@ class DownloadPlaylistCommand extends Command {
         if (!keys || keys.length === 0) {
           throw new Error('find nothing!');
         }
-  
+        log.info(keys);
         for (const key of keys) {
           const info = await scrapy.findDownloadInfo(key);
           if (!info) {
-            log.info('can\'t find this video, download nex one');
+            log.info('can\'t find this video, downloading next one');
             continue;
           }
           const result = await scrapy.downloadVideo(info, downloadDir);
