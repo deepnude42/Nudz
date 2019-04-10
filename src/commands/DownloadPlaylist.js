@@ -6,16 +6,16 @@ const log = require('../../Downloader/src/lib/log')
 class DownloadPlaylistCommand extends Command {
   async run() {
     const {flags} = this.parse(DownloadPlaylistCommand)
-    const name = flags.Name || '/playlist/17842802'
+    const name = flags.name || '/playlist/17842802'
     const downloadDir = flags.DownloadDir || './downloads'
-    const playlists = flags.Playlists.split(",") || ''
+    const playlists = flags.Playlists || ''
     this.log(playlists)
 
     //this.log(`hello ${name} from D:\\apps\\PersonalApps\\Test02\\DownloaderCLI\\src\\commands\\DownloadPlaylist.js`)
     this.log(`\nStarting Download for ${name} \n`)
 
-    let page = config.page || 1;
-    let search = config.search;
+    const page = config.page || 1;
+    const search = config.search;
   
     try {
       while (true) {

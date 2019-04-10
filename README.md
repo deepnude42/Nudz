@@ -28,12 +28,31 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`DownloaderCLI DownloadMultiplePlaylists`](#downloadercli-downloadmultipleplaylists)
 * [`DownloaderCLI DownloadPlaylist`](#downloadercli-downloadplaylist)
 * [`DownloaderCLI MoveFlies`](#downloadercli-moveflies)
 * [`DownloaderCLI PullFromFTP`](#downloadercli-pullfromftp)
 * [`DownloaderCLI PushToFTP`](#downloadercli-pushtoftp)
 * [`DownloaderCLI hello`](#downloadercli-hello)
 * [`DownloaderCLI help [COMMAND]`](#downloadercli-help-command)
+
+## `DownloaderCLI DownloadMultiplePlaylists`
+
+Describe the command here
+
+```
+USAGE
+  $ DownloaderCLI DownloadMultiplePlaylists
+
+OPTIONS
+  -n, --name=name  name to print
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src\commands\DownloadMultiplePlaylists.js](https://github.com/Test02/DownloaderCLI/blob/v0.0.1/src\commands\DownloadMultiplePlaylists.js)_
 
 ## `DownloaderCLI DownloadPlaylist`
 
@@ -44,7 +63,8 @@ USAGE
   $ DownloaderCLI DownloadPlaylist
 
 OPTIONS
-  -n, --name=name  name to print
+  -d, --DownloadDir=DownloadDir  Directory to download the files to
+  -n, --name=name                name to print
 
 DESCRIPTION
   ...
