@@ -2,7 +2,7 @@
   "name": "DownloaderCLI",
   "description": "Mutli Site Downloading dashboard",
   "version": "0.0.1",
-  "author": "Dylan Jackson",
+  "author": "",
   "bin": {
     "DownloaderCLI": "./bin/run"
   },
