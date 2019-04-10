@@ -1,7 +1,7 @@
 const {Command, flags} = require('@oclif/command')
-const scrapy = require('../helpers/lib/scrapy')
-const config = require('../helpers/config.json')
-const log = require('../helpers/lib/log')
+const scrapy = require('../helpers/src/lib/scrapy')
+const config = require('../helpers/src/config.json')
+const log = require('../helpers/src/lib/log')
 
 class DownloadMultiplePlaylistsCommand extends Command {
   async run() {

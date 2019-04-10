@@ -10,7 +10,14 @@
   "dependencies": {
     "@oclif/command": "^1.5.12",
     "@oclif/config": "^1.12.12",
-    "@oclif/plugin-help": "^2.1.6"
+    "@oclif/plugin-help": "^2.1.6",
+    "cheerio": "^1.0.0-rc.3",
+    "colors": "^1.3.3",
+    "fs-extra": "^7.0.1",
+    "lodash": "^4.17.11",
+    "moment": "^2.24.0",
+    "request": "^2.88.0",
+    "request-progress": "^3.0.0"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.22.0",
