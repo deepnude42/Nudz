@@ -6,4 +6,4 @@
 /yarn.lock
 node_modules
 /Downloader/node_modules
-/bin/downloads
+bin/downloads
