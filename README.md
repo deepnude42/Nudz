@@ -45,7 +45,8 @@ USAGE
   $ DownloaderCLI DownloadMultiplePlaylists
 
 OPTIONS
-  -n, --name=name  name to print
+  -d, --DownloadDir=DownloadDir  Directory to download the files to
+  -p, --Playlists=Playlists      List of Directories
 
 DESCRIPTION
   ...
