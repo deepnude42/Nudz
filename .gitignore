@@ -7,4 +7,4 @@
 node_modules
 /Downloader/node_modules
 bin/downloads
-/.editorconfig
+.editorconfig
