@@ -251,8 +251,8 @@ const downloadVideo = (ditem, downloadDir) => {
             // console.log(oneFile);
           }
 
-          log.info('all pieces have been downloaded!');
-          log.info('now, concat pieces...');
+          log.info('All pieces have been downloaded!');
+          log.info('Currently joining the pieces into a single file...');
           const ws = fse.createWriteStream(dst, { flag: 'a' });
           files.forEach(file => {
             const bf = fse.readFileSync(file);

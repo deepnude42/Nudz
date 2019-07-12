@@ -1,7 +1,10 @@
 const {Command, flags} = require('@oclif/command')
-
-class MoveFliesCommand extends Command {
+const fs = require('fs');
+const moveFile = require('move-file');
+const isNumber = require('is-number');
+class MoveFilesCommand extends Command {
   async run() {
+
 
     const {flags} = this.parse(MoveFileCommand)
     const Source = flags.source || '//192.168.0.12/Kapow/DocumentImaging/LTLPOD' 
@@ -57,16 +60,15 @@ class MoveFliesCommand extends Command {
         console.log("=============================");
       }
   });
-
   }
 }
 
-MoveFliesCommand.description = `Describe the command here
+MoveFilesCommand.description = `Describe the command here
 ...
 Extra documentation goes here
 `
 
-MoveFliesCommand.flags = {
+MoveFilesCommand.flags = {
   source: flags.string({char: 's', description: 'Source Directory'}),
   dest: flags.string({char: 'd', description: 'Destination Directorys'}),
   regexPattern: flags.string({char: 'p', description: 'RegexPattern'}),
@@ -75,4 +77,4 @@ MoveFliesCommand.flags = {
 
 }
 
-module.exports = MoveFliesCommand
+module.exports = MoveFilesCommand

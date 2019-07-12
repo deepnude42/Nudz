@@ -2,17 +2,20 @@ const {Command, flags} = require('@oclif/command')
 const scrapy = require('../helpers/src/lib/scrapy')
 const config = require('../helpers/src/config.json')
 const log = require('../helpers/src/lib/log')
+const chalk = require('chalk');
+const boxen = require('boxen');
 
 class DownloadPlaylistCommand extends Command {
   async run() {
+    console.log(chalk.white.bgBlue(boxen('|     Pornhub CLI     |', {padding: 5, margin: 1, borderStyle: 'double'})));
+
     const {flags} = this.parse(DownloadPlaylistCommand)
     const name = flags.name || '/playlist/17842802'
-    const downloadDir = flags.DownloadDir || './downloads'
+    const downloadDir = flags.DownloadDir || 'G:\\My_apps\\WeStream.Free\\Resin\\Collection' //'./downloads'
     const playlists = flags.Playlists || ''
-    this.log(playlists)
+    this.log(chalk.red(playlists));
 
-    //this.log(`hello ${name} from D:\\apps\\PersonalApps\\Test02\\DownloaderCLI\\src\\commands\\DownloadPlaylist.js`)
-    this.log(`\nStarting Download for ${name} \n`)
+    this.log(chalk.blue(`\nStarting Download for https://pornhub.com${name} \n     To:  ${downloadDir}\n`));
 
     const page = config.page || 1;
     const search = config.search;
@@ -28,7 +31,11 @@ class DownloadPlaylistCommand extends Command {
         if (!keys || keys.length === 0) {
           throw new Error('find nothing!');
         }
-        log.info(keys);
+        log.info(`Found ${keys.length} files`);
+        for(const i in keys){
+          const info = await scrapy.findDownloadInfo(keys[i]);
+          console.log(info);
+        }
         for (const key of keys) {
           const info = await scrapy.findDownloadInfo(key);
           if (!info) {
@@ -55,7 +62,7 @@ Extra documentation goes here
 `
 
 DownloadPlaylistCommand.flags = {
-  name: flags.string({char: 'n', description: 'name to print'}),
+  name: flags.string({char: 'n', description: 'Directory to download from Ex: playlist/10774261 to download all videos in playlist pornhub.com/playlist/10774261 '}),
   DownloadDir: flags.string({char: 'd', description: 'Directory to download the files to'}),
 }
 

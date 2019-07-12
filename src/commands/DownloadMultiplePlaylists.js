@@ -2,53 +2,56 @@ const {Command, flags} = require('@oclif/command')
 const scrapy = require('../helpers/src/lib/scrapy')
 const config = require('../helpers/src/config.json')
 const log = require('../helpers/src/lib/log')
+const chalk = require('chalk');
+const boxen = require('boxen');
 
 class DownloadMultiplePlaylistsCommand extends Command {
   async run() {
+    console.log(chalk.blue(boxen('|     Pornhub CLI     |', {padding: 1, margin: 1, borderStyle: 'double'})));
+
     const {flags} = this.parse(DownloadMultiplePlaylistsCommand)
-    const downloadDir = flags.DownloadDir || './downloads'
+    const downloadDir = flags.DownloadDir || 'G:\\My_apps\\WeStream.Free\\Resin\\Collection' //'./downloads'
     const playlists = flags.Playlists || ''
     this.log(playlists)
 
-    //this.log(`hello ${name} from D:\\apps\\PersonalApps\\Test02\\DownloaderCLI\\src\\commands\\DownloadPlaylist.js`)
     let listOfPlaylists = playlists.split(",");
     for(var i in listOfPlaylists){
     this.log(listOfPlaylists[i])
 
     let name = listOfPlaylists[i];
-    this.log(`\nStarting Download for ${name} \n`)
+    this.log(chalk.blue(`\nStarting Download for https://pornhub.com${name} \n     To:  ${downloadDir}\n`));
 
     let page = config.page || 1;
     let search = config.search;
   
-    try {
-      while (true) {
-        const opts = {
-          page,
-          search,
-          pathname: name
-        };
-        const keys = await scrapy.findKeys(opts);
-        if (!keys || keys.length === 0) {
-          throw new Error('find nothing!');
-        }
-        log.info(keys);
-        for (const key of keys) {
-          const info = await scrapy.findDownloadInfo(key);
-          if (!info) {
-            log.info('can\'t find this video, downloading next one');
-            continue;
+          try {
+            while (true) {
+              const opts = {
+                page,
+                search,
+                pathname: name
+              };
+              const keys = await scrapy.findKeys(opts);
+              if (!keys || keys.length === 0) {
+                throw new Error('find nothing!');
+              }
+              log.info(keys);
+              for (const key of keys) {
+                const info = await scrapy.findDownloadInfo(key);
+                if (!info) {
+                  log.info('can\'t find this video, downloading next one');
+                  continue;
+                }
+                const result = await scrapy.downloadVideo(info, downloadDir);
+                log.info(result);
+                console.log('\n');
+              }
+        
+              page += 1;
+            }
+          } catch (error) {
+            console.log(error);
           }
-          const result = await scrapy.downloadVideo(info, downloadDir);
-          log.info(result);
-          console.log('\n');
-        }
-  
-        page += 1;
-      }
-    } catch (error) {
-      console.log(error);
-    }
     }
   }
 }
